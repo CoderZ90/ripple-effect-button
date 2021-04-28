@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <a href="#">Click Me</a>
+    <script>
+        // NOTE you need to use querySelectorAll to make it work even if there is one element . because we are getting the anchor tag and not the class or id :)
+        const button = document.querySelectorAll('a');
+        button.forEach(btn => {
+            btn.addEventListener('click', function(e){
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+
+                let ripple = document.createElement('span');
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000)
+                // 1000 = 1 second
+            });
+        });
+    </script>
+</body>
+</html>
